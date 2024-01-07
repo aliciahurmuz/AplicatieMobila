@@ -24,17 +24,25 @@ public partial class ListaPagina : ContentPage
     }
     async void OnChooseButtonClicked(object sender, EventArgs e)
     {
-        ListaInterventii listaInterventii = (ListaInterventii)this.BindingContext;
+        // Creaz? un nou obiect ListaInterventii
+        ListaInterventii listaInterventii = new ListaInterventii();
+
+        // Seteaz? BindingContext la noul obiect creat
+        BindingContext = listaInterventii;
+
+        // Creaz? un nou obiect Interventie
         Interventie interventie = new Interventie
         {
-            Denumire = listaInterventii.Denumire, 
+            Denumire = listaInterventii.Denumire,
         };
 
+        // Seteaz? BindingContext pentru PaginaInterventie la noul obiect Interventie
         await Navigation.PushAsync(new PaginaInterventie(interventie)
         {
             BindingContext = interventie
         });
     }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();

@@ -12,13 +12,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Save"
+            <Button Text="Salveaza"
  Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
- Text="Delete"
+ Text="Sterge"
  Clicked="OnDeleteButtonClicked"/>
         </Grid>
-        <Button Text="Add/Choose Item to buy" MaximumWidthRequest="300"
+        <Button Text="Adauga interventii dorite" MaximumWidthRequest="300"
 Clicked="OnChooseButtonClicked"/>
         <ListView x:Name="listView"
  Margin="20">

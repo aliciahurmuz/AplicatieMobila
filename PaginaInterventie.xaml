@@ -6,10 +6,10 @@
     <ContentPage.Content>
         <StackLayout Margin="20">
             <Editor Placeholder="Introduceti denumirea interventiei" Margin="20"
- Text="{Binding Denumire}"
- HeightRequest="50" />
+                    Text="{Binding Denumire}" HeightRequest="50" />
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -18,21 +18,26 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="Save Product" MaximumWidthRequest="200"
- Clicked="OnSaveButtonClicked" />
-                <Button Grid.Column="1"
- Text="Delete Product" MaximumWidthRequest="200"
- Clicked="OnDeleteButtonClicked"/>
-                <ListView Grid.Row="1" Grid.Column="0" x:Name="listView"
- Margin="20" IsRefreshing="True" >
+                <Button Grid.Row="0" Grid.Column="0" Text="Salveaza interventie" MaximumWidthRequest="200"
+                        Clicked="OnSaveButtonClicked" />
+                <Button Grid.Row="0" Grid.Column="1" Text="Sterge interventie" MaximumWidthRequest="200"
+                        Clicked="OnDeleteButtonClicked"/>
+                <ListView Grid.Row="1" Grid.Column="0" x:Name="listView" Margin="20" IsRefreshing="True" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextCell Text="{Binding Denumire}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Grid.Row="2" Grid.Column="0" Text="Adauga la cos"
-MaximumWidthRequest="200" Clicked="OnAddButtonClicked" />
+                <Button Grid.Row="2" Grid.Column="0" Text="Adauga interventiile dorite" MaximumWidthRequest="200"
+                        Clicked="OnAddButtonClicked" />
+                <ListView Grid.Row="3" Grid.Column="0" x:Name="cosListView" Margin="20" IsRefreshing="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Denumire}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

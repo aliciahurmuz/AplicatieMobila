@@ -45,7 +45,6 @@ namespace AplicatieMobila.Data
             }
         }
 
-
         public Task<int> SaveInterventieAsync(Interventie interventie)
         {
             if (interventie.Id != 0)

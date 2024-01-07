@@ -1,55 +1,69 @@
 using AplicatieMobila.Models;
-namespace AplicatieMobila;
+using System;
+using System.Collections.Generic;
 
-public partial class PaginaInterventie : ContentPage
+namespace AplicatieMobila
 {
-    Interventie interv;
-    Interventie sl;
-    public List<Clinica> CliniciDisponibile { get; set; }
-    public PaginaInterventie(Interventie slist)
+    public partial class PaginaInterventie : ContentPage
     {
-        InitializeComponent();
-        sl = slist;
-        CliniciDisponibile = new List<Clinica>();
-    }
+        Interventie interv;
+        Interventie sl;
+        public List<Clinica> CliniciDisponibile { get; set; }
 
-    async void OnSaveButtonClicked(object sender, EventArgs e)
-    {
-        interv = (Interventie)BindingContext;
-        await App.Database.SaveInterventieAsync(interv);
-        listView.ItemsSource = await App.Database.GetInterventiiAsync();
-    }
-
-    async void OnDeleteButtonClicked(object sender, EventArgs e)
-    {
-        interv = (Interventie)BindingContext;
-        await App.Database.DeleteInterventieAsync(interv);
-        listView.ItemsSource = await App.Database.GetInterventiiAsync();
-    }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        CliniciDisponibile = await App.Database.GetCliniciAsync();
-        listView.ItemsSource = await App.Database.GetInterventiiAsync();
-    }
-
-    async void OnAddButtonClicked(object sender, EventArgs e)
-    {
-        Interventie p;
-
-        if (listView.SelectedItem != null)
+        public PaginaInterventie(Interventie slist)
         {
-            p = listView.SelectedItem as Interventie;
-            var sl = new ListaInterventii();
-            var lp = new ListaInterventie()
-            {
-                ListaInterventiiId = sl.Id,
-                InterventieId = p.Id
-            };
+            InitializeComponent();
+            sl = slist;
+            CliniciDisponibile = new List<Clinica>();
+
+            // Ini?ializeaz? cosListView cu o list? goal? sau datele corespunz?toare
+            cosListView.ItemsSource = new List<Interventie>();
+        }
+
+        async void OnSaveButtonClicked(object sender, EventArgs e)
+        {
+            interv = (Interventie)BindingContext;
             await App.Database.SaveInterventieAsync(interv);
-            p.Listainterventii = new List<ListaInterventie> { lp };
-            await Navigation.PopAsync();
+            listView.ItemsSource = await App.Database.GetInterventiiAsync();
+        }
+
+        async void OnDeleteButtonClicked(object sender, EventArgs e)
+        {
+            interv = (Interventie)BindingContext;
+            await App.Database.DeleteInterventieAsync(interv);
+            listView.ItemsSource = await App.Database.GetInterventiiAsync();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            CliniciDisponibile = await App.Database.GetCliniciAsync();
+            listView.ItemsSource = await App.Database.GetInterventiiAsync();
+        }
+
+        async void OnAddButtonClicked(object sender, EventArgs e)
+        {
+            Interventie interventieSelectata = BindingContext as Interventie;
+
+            if (interventieSelectata != null)
+            {
+                var sl = new ListaInterventii();
+                var lp = new ListaInterventie()
+                {
+                    ListaInterventiiId = sl.Id,
+                    InterventieId = interventieSelectata.Id
+                };
+                await App.Database.SaveInterventieAsync(interventieSelectata);
+                interventieSelectata.Listainterventii = new List<ListaInterventie> { lp };
+
+                // Adaug? produsul în lista co?ului de cump?r?turi
+                var cosItems = cosListView.ItemsSource as List<Interventie>;
+                cosItems.Add(interventieSelectata);
+                cosListView.ItemsSource = null;
+                cosListView.ItemsSource = cosItems;
+
+                await Navigation.PopAsync();
+            }
         }
     }
 }
