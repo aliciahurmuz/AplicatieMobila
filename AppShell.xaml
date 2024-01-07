@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AplicatieMobila.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AplicatieMobila"
+    Shell.FlyoutBehavior="Disabled"
+    Title="AplicatieMobila">
+
+    <TabBar>
+        
+        <ShellContent
+             Title="Clinica Smile"
+             ContentTemplate="{DataTemplate local:Despre}"
+             />
+        <ShellContent
+             Title="Lista interventii clinica"
+             ContentTemplate="{DataTemplate local:Lista1}"
+             />
+        <ShellContent
+ Title="Gestionare Clinici"
+ ContentTemplate="{DataTemplate local:PaginaClinica}"
+ />
+    </TabBar>
+
+</Shell>
+    

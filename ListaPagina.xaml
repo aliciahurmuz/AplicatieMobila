@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplicatieMobila.ListaPagina"
+             Title="ListaPagina">
+    <StackLayout Margin="20">
+        <Editor Placeholder="Introduceti o denumire"
+ Text="{Binding Denumire}"
+ HeightRequest="50" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+ Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+ Text="Delete"
+ Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+        <Button Text="Add/Choose Item to buy" MaximumWidthRequest="300"
+Clicked="OnChooseButtonClicked"/>
+        <ListView x:Name="listView"
+ Margin="20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Detail="{Binding Denumire}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+           </StackLayout>
+</ContentPage>

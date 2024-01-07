@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplicatieMobila.Despre"
+             Title="Despre">
+    <VerticalStackLayout Spacing="10" Margin="10">
+        <HorizontalStackLayout Spacing="10">
+            <Image Source="dentalclinic.png"
+ SemanticProperties.Description="Clinica stomatologica Smile"
+HeightRequest="64" />
+            <Label FontSize="22" FontAttributes="Bold" Text="Lista interventii" VerticalOptions="End" />
+            <Label FontSize="22"  VerticalOptions="End" />
+        </HorizontalStackLayout>
+        <Label Text="Fa o programare" />
+
+    </VerticalStackLayout>
+</ContentPage>

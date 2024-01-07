@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplicatieMobila.Lista1"
+             Title="Lista1">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Adauga interventii"
+ Clicked="OnListaInterventiiAddedClicked" />
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="listView"
+ Margin="20"
+ ItemSelected="OnListViewItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Denumire}"
+ Detail="{Binding Date}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
