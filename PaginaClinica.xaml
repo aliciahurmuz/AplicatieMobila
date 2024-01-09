@@ -1,37 +1,28 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AplicatieMobila.PaginaClinica"
              Title="Pagina clinici">
-    <!--BindingContext="{Binding Clinica}">-->
     <ContentPage.Content>
-        <StackLayout Margin="20">
-            <Editor Placeholder="Introduceti clinica" Margin="20"
- Text="{Binding Nume}"
- HeightRequest="50" />
-            <Editor Placeholder="Introduceti adresa" Margin="20"
- Text="{Binding Adresa}"
- HeightRequest="50" />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Save Clinic" Grid.Column="0"
-MaximumWidthRequest="200" 
- Clicked="OnSaveButtonClicked" />
-            </Grid>
-            <ListView x:Name="listView" Margin="10,0,10,0">
+        <StackLayout Margin="10">
+            <Editor Placeholder="Introduceti clinica" Margin="0,0,0,10"
+                    Text="{Binding Nume}" HeightRequest="50" />
+            <Editor Placeholder="Introduceti adresa" Margin="0,0,0,10"
+                    Text="{Binding Adresa}" HeightRequest="50" />
+            <Picker x:Name="pickerInterventii"
+                    Title="Selectează interventia"
+                    ItemDisplayBinding="{Binding Denumire}"
+                    SelectedItem="{Binding InterventieSelectata}" />
+            <Button Text="Save Clinic" MaximumWidthRequest="200" 
+                    Clicked="OnSaveButtonClicked" />
+
+            <ListView x:Name="listView" Margin="0,10,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding Detalii}" />
+                                <Label Text="{Binding Nume}" />
+                                <Label Text="{Binding Adresa}" />
+                                <Label Text="{Binding InterventieSelectata.Denumire}" />
                             </StackLayout>
                             <ViewCell.ContextActions>
                                 <MenuItem Clicked="OnDeleteMenuItemClicked" CommandParameter="{Binding .}" Text="Șterge" />
@@ -40,7 +31,6 @@ MaximumWidthRequest="200"
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -18,8 +18,8 @@
  Text="Sterge"
  Clicked="OnDeleteButtonClicked"/>
         </Grid>
-        <Button Text="Adauga interventii dorite" MaximumWidthRequest="300"
-Clicked="OnChooseButtonClicked"/>
+        <!--<Button Text="Adauga interventii dorite" MaximumWidthRequest="300"
+Clicked="OnChooseButtonClicked"/>-->
         <ListView x:Name="listView"
  Margin="20">
             <ListView.ItemTemplate>

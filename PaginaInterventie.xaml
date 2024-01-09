@@ -29,8 +29,8 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Button Grid.Row="2" Grid.Column="0" Text="Adauga interventiile dorite" MaximumWidthRequest="200"
-                        Clicked="OnAddButtonClicked" />
+                <!--<Button Grid.Row="2" Grid.Column="0" Text="Adauga interventiile dorite" MaximumWidthRequest="200"
+                        Clicked="OnAddButtonClicked" /> -->
                 <ListView Grid.Row="3" Grid.Column="0" x:Name="cosListView" Margin="20" IsRefreshing="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>

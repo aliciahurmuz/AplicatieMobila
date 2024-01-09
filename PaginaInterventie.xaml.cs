@@ -15,15 +15,19 @@ namespace AplicatieMobila
             InitializeComponent();
             sl = slist;
             CliniciDisponibile = new List<Clinica>();
-
-            // Ini?ializeaz? cosListView cu o list? goal? sau datele corespunz?toare
             cosListView.ItemsSource = new List<Interventie>();
         }
 
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
-            interv = (Interventie)BindingContext;
-            await App.Database.SaveInterventieAsync(interv);
+            var clinica = (Clinica)BindingContext;
+            await App.Database.SaveClinicaAsync(clinica);
+            await DisplayClinicListAsync();
+            await Navigation.PopAsync();
+        }
+        private async Task DisplayClinicListAsync()
+        {
+            CliniciDisponibile = await App.Database.GetCliniciAsync();
             listView.ItemsSource = await App.Database.GetInterventiiAsync();
         }
 
@@ -56,7 +60,6 @@ namespace AplicatieMobila
                 await App.Database.SaveInterventieAsync(interventieSelectata);
                 interventieSelectata.Listainterventii = new List<ListaInterventie> { lp };
 
-                // Adaug? produsul în lista co?ului de cump?r?turi
                 var cosItems = cosListView.ItemsSource as List<Interventie>;
                 cosItems.Add(interventieSelectata);
                 cosListView.ItemsSource = null;

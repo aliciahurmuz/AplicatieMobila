@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace AplicatieMobila.Models
        
         [OneToMany]
         public List<ListaInterventie> Listainterventii { get; set; }
+        public int clinicaId { get; set; }
 
         
     }

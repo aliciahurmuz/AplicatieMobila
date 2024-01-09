@@ -14,5 +14,6 @@ namespace AplicatieMobila.Models
 
         [Ignore]
         public List<ListaInterventii> ListeI { get; set; }
+        public int InterventieId { get; set; }
     }
 }
