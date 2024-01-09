@@ -38,18 +38,18 @@ public partial class Lista2clinici : ContentPage
 
         if (selectedClinic != null)
         {
-            var result = await DisplayAlert("Confirmare", $"Sigur dori?i s? ?terge?i clinica {selectedClinic.Nume}?", "Da", "Nu");
+            var result = await DisplayAlert("Confirmare", $"Sigur doriti sa stergeti clinica {selectedClinic.Nume}?", "Da", "Nu");
 
             if (result)
             {
                 await App.Database.DeleteClinicaAsync(selectedClinic);
-                await DisplayAlert("Clinic? ?tears?", $"Clinica {selectedClinic.Nume} a fost ?tears? cu succes.", "OK");
+                await DisplayAlert("Clinica atearsa", $"Clinica {selectedClinic.Nume} a fost stearsa cu succes.", "OK");
                 await RefreshClinicListAsync();
             }
         }
         else
         {
-            await DisplayAlert("Eroare", "V? rug?m s? selecta?i o clinic? pentru a o ?terge.", "OK");
+            await DisplayAlert("Eroare", "Va rugam sa selectati o clinica pentru a o sterge.", "OK");
         }
     }
 
